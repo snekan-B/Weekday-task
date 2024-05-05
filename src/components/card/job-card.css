@@ -1,0 +1,17 @@
+.card-component{
+    border: 1px solid gray;
+    padding: 20px;
+}
+
+.company-component {
+    display: flex;
+
+}
+.company-component > img{
+    width: 30px;
+    height: 30px;
+}
+
+.about-company >p {
+    word-wrap: break-word
+}

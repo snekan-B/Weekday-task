@@ -1,0 +1,11 @@
+.filter-component{
+    display: flex;
+    justify-content: space-around;
+}
+.filter-component >div{
+    width: 14%;
+}
+
+.filter-component div{
+    font-size: 1rem;
+}
