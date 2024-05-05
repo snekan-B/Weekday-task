@@ -30,7 +30,7 @@ export default  function Filter(){
                 fieldValues.map(field =>
                     <div key={field.title}>
                          {field?.groupBy?<GroupedCheckBox filterKey={field?.filterKey} placeholder={field.title} options={field.options} onChange={dofilter}/>
-                                    :<CheckBox filterKey={field?.filterKey} placeholder={field.title} onChange={dofilter}options={field.options}/>}
+                                    :<CheckBox isMultiple={field?.isMultiple} filterKey={field?.filterKey} placeholder={field.title} onChange={dofilter}options={field.options}/>}
                     </div>
             )
             }

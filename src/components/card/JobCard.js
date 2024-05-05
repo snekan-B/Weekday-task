@@ -1,45 +1,66 @@
 import './job-card.css'
 
 import {useSelector,useDispatch} from 'react-redux'
-import {useEffect,useState} from 'react'
+import {useEffect,useState,useRef} from 'react'
+import {debounce} from '../util/Debounce'
 import {getJobs} from '../../actions/JobActions'
+import {CircularProgress} from '@mui/material'
 
 export default function JobCard(){
 
     const jobs = useSelector(state => state.Job.jobs)  
-    const [limit,setLimit] = useState(20)
-    const [offset,setOffset] = useState(0)
+    const [offset,setOffset] = useState(-20)
+    const [loading,setLoading] =useState(false)
     const dispatch = useDispatch()
+
+    const observerTarget = useRef(null);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    entries => {
+      if (entries[0].isIntersecting) {
+        console.log("reached!!!!!")
+        fetchJobs()
+      }
+    },
+    { threshold: 1 }
+  );
+
+  if (observerTarget.current) {
+    observer.observe(observerTarget.current);
+  }
+
+  return () => {
+    if (observerTarget.current) {
+      observer.unobserve(observerTarget.current);
+    }
+  };
+}, [observerTarget]);
 
 
     useEffect(()=>{
-        dispatch(getJobs(offset,limit))
-    },[limit])
-
-    const handleScroll = () => {
-        console.log("scrolling......",window.innerHeight+document.documentElement.scrollTop, document.documentElement.offsetHeight)
-        if (
-          window.innerHeight + document.documentElement.scrollTop
-          >= document.documentElement.offsetHeight-200
-        ) {
-            console.log("reached")
-          setOffset(preOffset => preOffset + (limit+1))
-          setLimit(preLimit => preLimit + 20);
+        if(offset >=0) {
+            dispatch(getJobs(offset,20))
+            setTimeout(()=>{
+                setLoading(false)
+            },1000)
         }
-      };
+    },[offset])
+
+    const fetchJobs=()=>{
+        setLoading(true)
+        setOffset(prevOffset => prevOffset+20);
+    }
     
-      useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-      }, []);
 
 
     return(
         <div className='card-grp'>
+         <div>
             { jobs?
-                jobs.map((selector)=>{
+                jobs.map((selector,index)=>{
                     return(
-                        <div key={selector?.jdUid} className="card-component">
+                    <div key={index} className="card-component">
                         <div className="company-component">
                             <img alt="sample" src={selector?.logoUrl}/>
                             <div className="company">
@@ -69,8 +90,13 @@ export default function JobCard(){
                         </div>
                     </div>
                     )
-                }) :<div></div>
+                }
+                ) 
+                :<div></div>
             }
+            </div>
+            <div ref={observerTarget}></div>
+            <div>{loading?<CircularProgress/>:<div></div>}</div>
         </div>
         
     )

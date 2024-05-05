@@ -1,10 +1,10 @@
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
-export function CheckBox({placeholder,options,onChange,filterKey}) {
+export function CheckBox({placeholder,options,onChange,filterKey,isMultiple}) {
     return(
         <Autocomplete
-        multiple
+        multiple={isMultiple}
         id="tags-outlined"
         options={options}
         getOptionLabel={(option) => option}

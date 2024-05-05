@@ -27,21 +27,25 @@ export const fieldValues =[
     
         ],
         filterKey:"jobRole",
+        isMultiple:true,
         groupBy:true
     },
     {
         title :"Experience",
         filterKey :"minExp",
+        isMultiple:true,
         options:["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     },
     {
         title:"Remote",
         filterKey:"location",
+        isMultiple:true,
         options:["Remote", "Hybrid", "In-office"]
     },
     {
         title: "Minimum Base Pay Salary",
         filterKey:"minJdSalary",
+        isMultiple:false,
         options: ["0L", "10L", "20L", "30L", "40L", "50L", "60L", "70L"]
     }
 ]

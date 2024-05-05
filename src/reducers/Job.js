@@ -1,7 +1,7 @@
 import {JobActionTypes} from '../constants/action-fields';
 
 
-export const Job = (state={jobs:[],actualJobs:[],filter:{jobRole:[],minExp:[],location:[],minJdSalary:[],companyName:""}},{type,payload})=>{
+export const Job = (state={jobs:[],actualJobs:[],filter:{jobRole:[],minExp:[],location:[],minJdSalary:"",companyName:""}},{type,payload})=>{
     switch(type) {
         case JobActionTypes.GET_JOBS :{
             console.log("pay",payload)
@@ -32,9 +32,9 @@ const getFilteredJob = (jobs,filter) =>{
         const roleCondition = filter.jobRole.length>0 ? job?.jobRole !=null && filter.jobRole.includes(job?.jobRole) :true;
         const expCondtion =  filter.minExp.length>0 ? job?.minExp !=null && filter.minExp.includes(job?.minExp) :true;
         const locationCondition = filter.location.length>0 ? job?.location !=null  && 
-                                (filter.location.includes(job?.location) || (job?.location !== 'remote' && job?.location!=='hybrid')):true
+                                (filter.location.includes(job?.location) || (filter.location.includes("in-office") && job?.location !== 'remote' && job?.location!=='hybrid')):true
 
-        const salaryConditon = filter.minJdSalary.length>0 ? job?.minJdSalary !=null && filter.minJdSalary.includes(job?.minJdSalary) :true
+        const salaryConditon = (filter.minJdSalary !==null && filter.minJdSalary.length>0) ? job?.minJdSalary !=null && parseInt(filter.minJdSalary.replace("L","")) <=job?.minJdSalary :true
 
         const companyNameCondition = filter.companyName.length >0? job?.companyName != null && job?.companyName.includes(filter.companyName):true
 
