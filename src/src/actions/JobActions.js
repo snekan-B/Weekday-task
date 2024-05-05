@@ -3,6 +3,7 @@ import {jobApi} from '../api/Api'
 
 
 export const getJobs =(offset,limit) =>{
+    console.log("offset",offset,"limit",limit)
     return async function(dispatch) {
 
     console.log("calling Api....")
@@ -15,10 +16,10 @@ export const getJobs =(offset,limit) =>{
        limit
       };
     const response = await jobApi(headers).post(relativePath,requestBody)
-    dispatch({type:JobActionTypes.GET_JOBS,payload:{jobs:response?.data?.jdList}})
+    dispatch({type:JobActionTypes.GET_JOBS,payload:{actualJobs:response?.data?.jdList}})
     }
 }
 
-export const filterJobs=(jobs,filterBy,filterValue)=> {
-    return ({type:JobActionTypes.FILTER_JOBS,payload:{jobs,filterBy,filterValue}})
+export const filterJobs=(filterBy,filterValue)=> {
+    return ({type:JobActionTypes.FILTER_JOBS,payload:{filterBy,filterValue}})
 }

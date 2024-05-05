@@ -1,18 +1,37 @@
 import './job-card.css'
 
 import {useSelector,useDispatch} from 'react-redux'
-import {useEffect} from 'react'
+import {useEffect,useState} from 'react'
 import {getJobs} from '../../actions/JobActions'
 
 export default function JobCard(){
 
     const jobs = useSelector(state => state.Job.jobs)  
+    const [limit,setLimit] = useState(20)
+    const [offset,setOffset] = useState(0)
     const dispatch = useDispatch()
 
 
     useEffect(()=>{
-        dispatch(getJobs(0,300))
-    },[])
+        dispatch(getJobs(offset,limit))
+    },[limit])
+
+    const handleScroll = () => {
+        console.log("scrolling......",window.innerHeight+document.documentElement.scrollTop, document.documentElement.offsetHeight)
+        if (
+          window.innerHeight + document.documentElement.scrollTop
+          >= document.documentElement.offsetHeight-200
+        ) {
+            console.log("reached")
+          setOffset(preOffset => preOffset + (limit+1))
+          setLimit(preLimit => preLimit + 20);
+        }
+      };
+    
+      useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
 
 
     return(

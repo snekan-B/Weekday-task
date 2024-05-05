@@ -1,7 +1,7 @@
 import {fieldValues} from '../../constants/field-values';
 import { GroupedCheckBox,CheckBox } from '../checkbox/CheckBox'; 
 import {filterJobs} from '../../actions/JobActions'
-import {useDispatch,useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {TextField} from '@mui/material'
 import './filter.css'
 
@@ -9,11 +9,15 @@ import './filter.css'
 
 export default  function Filter(){
 
-    const jobs = useSelector(state=>state.Job.jobs)
     const dispatch = useDispatch()
 
     const dofilter=(filterKey)=>(event,value)=>{
-        dispatch(filterJobs(jobs,filterKey,value))
+        dispatch(filterJobs(filterKey,value))
+    }
+
+    const doCompanySearch=(event)=>{
+        console.log("name",event.target.value)
+        dispatch(filterJobs("companyName",event.target.value))
     }
 
 
@@ -32,7 +36,7 @@ export default  function Filter(){
             }
             </div>
             <div className='text-field'>
-                    <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+                    <TextField id="outlined-basic" onChange={doCompanySearch} label="search company name"  variant="outlined" />
             </div>
         </div>
     )
