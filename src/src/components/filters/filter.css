@@ -1,0 +1,18 @@
+.filter-component div{
+    font-size: 1rem;
+}
+
+.filter-component {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.checkbox-grp{
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+}
+.checkbox-grp >div{
+    width: 20%;
+}

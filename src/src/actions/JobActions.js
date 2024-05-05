@@ -15,6 +15,10 @@ export const getJobs =(offset,limit) =>{
        limit
       };
     const response = await jobApi(headers).post(relativePath,requestBody)
-    dispatch({type:JobActionTypes.GET_JOBS,payload:response?.data?.jdList})
+    dispatch({type:JobActionTypes.GET_JOBS,payload:{jobs:response?.data?.jdList}})
     }
+}
+
+export const filterJobs=(jobs,filterBy,filterValue)=> {
+    return ({type:JobActionTypes.FILTER_JOBS,payload:{jobs,filterBy,filterValue}})
 }
