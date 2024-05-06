@@ -4,6 +4,9 @@
   display: flex;
   width: 25%;
   flex-direction: column;
+  border-radius: 20px;
+  border: solid 1px rgb(198, 197, 197);
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0);
 }
 
 .company-component {
@@ -80,4 +83,22 @@
   height: 40%;
   color: white;
   background-color: rgb(26, 26, 151);
+}
+
+.readmore-button {
+  background-color: white;
+  color: blue;
+  border: 0;
+  font-size: 15px;
+}
+
+.thunder-img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.check-image {
+  width: 15px;
+  height: 15px;
+  margin-left: 4px;
 }

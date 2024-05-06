@@ -1,4 +1,6 @@
 import "./job-card.css";
+import checked from "./assets/checked.png";
+import thunder from "./assets/thunder.png";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
@@ -8,12 +10,19 @@ import { CircularProgress } from "@mui/material";
 
 export default function JobCard() {
   const jobs = useSelector((state) => state.Job.jobs);
+  const [expandedCards, setExpandedCards] = useState([]);
   const [offset, setOffset] = useState(-20);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const observerTarget = useRef(null);
-
+  const toggleCardExpansion = (index) => {
+    setExpandedCards((prev) => {
+      const newExpandedCards = [...prev];
+      newExpandedCards[index] = !newExpandedCards[index];
+      return newExpandedCards;
+    });
+  };
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -55,6 +64,11 @@ export default function JobCard() {
       <div>
         {jobs ? (
           jobs.map((selector, index) => {
+            const jobDescription = selector?.jobDetailsFromCompany || "";
+            const isExpanded = expandedCards[index];
+            const truncatedDescription = isExpanded
+              ? jobDescription
+              : jobDescription.slice(0, 449);
             return (
               <div key={index} className="card-component">
                 <div className="company-component">
@@ -77,6 +91,11 @@ export default function JobCard() {
                   <div className="salary">
                     Estimated Salary : $ {selector?.minJdSalary}-{" "}
                     {selector?.maxJdSalary} LPA
+                    <img
+                      className="check-image"
+                      src={checked}
+                      alt="check-mark"
+                    ></img>
                   </div>
                 )}
 
@@ -84,7 +103,17 @@ export default function JobCard() {
                   <div className="about-company">
                     <h4>About Company:</h4>
                     <h5>About us</h5>
-                    <p>{selector?.jobDetailsFromCompany}</p>
+                    <p>
+                      {truncatedDescription}
+                      {!isExpanded && jobDescription.length > 150 && (
+                        <button
+                          className="readmore-button"
+                          onClick={() => toggleCardExpansion(index)}
+                        >
+                          Read more
+                        </button>
+                      )}
+                    </p>
                   </div>
                 )}
                 {selector?.minExp != null && (
@@ -94,7 +123,14 @@ export default function JobCard() {
                   </div>
                 )}
                 <div className="job-btn-grp">
-                  <button className="apply-button">Easy Apply</button>
+                  <button className="apply-button">
+                    <img
+                      className="thunder-img"
+                      src={thunder}
+                      alt="thunder"
+                    ></img>
+                    Easy Apply
+                  </button>
                   <br></br>
                   <button className="referal-button">
                     Unlock referal asks
