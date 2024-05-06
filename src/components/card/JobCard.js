@@ -1,6 +1,8 @@
 import "./job-card.css";
 import checked from "./assets/checked.png";
 import thunder from "./assets/thunder.png";
+import blr1 from "./assets/blrface1.jpeg";
+import blr2 from "./assets/blrface2.jpeg";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
@@ -68,7 +70,7 @@ export default function JobCard() {
             const isExpanded = expandedCards[index];
             const truncatedDescription = isExpanded
               ? jobDescription
-              : jobDescription.slice(0, 449);
+              : jobDescription.slice(0, 460);
             return (
               <div key={index} className="card-component">
                 <div className="company-component">
@@ -103,14 +105,14 @@ export default function JobCard() {
                   <div className="about-company">
                     <h4>About Company:</h4>
                     <h5>About us</h5>
-                    <p>
+                    <p className="about-paragraph">
                       {truncatedDescription}
                       {!isExpanded && jobDescription.length > 150 && (
                         <button
                           className="readmore-button"
                           onClick={() => toggleCardExpansion(index)}
                         >
-                          Read more
+                          View Job
                         </button>
                       )}
                     </p>
@@ -133,6 +135,16 @@ export default function JobCard() {
                   </button>
                   <br></br>
                   <button className="referal-button">
+                    <img
+                      className="blurred1"
+                      src={blr1}
+                      alt="blurred image"
+                    ></img>
+                    <img
+                      className="blurred2"
+                      src={blr2}
+                      alt="blurred image"
+                    ></img>
                     Unlock referal asks
                   </button>
                 </div>
