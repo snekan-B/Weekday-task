@@ -1,4 +1,4 @@
-# Weekday Internship task
+# Weekday  task
 
 Brief description of the project.
 
