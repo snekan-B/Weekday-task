@@ -1,4 +1,4 @@
-# Project Title
+# Weekday Internship task
 
 Brief description of the project.
 
@@ -13,7 +13,7 @@ Brief description of the project.
 
 1. Clone the repository to your local machine using the following command:
 
-   git clone [<repository-url>](https://github.com/snekan-B/weekday-task.git)
+   git clone (https://github.com/snekan-B/weekday-task.git)
 
 2. Navigate to the project directory:
 
@@ -23,6 +23,7 @@ Brief description of the project.
    npm install
 
 4. Once the installation is complete, start the development server by running:
+   npm start
 
 5. Open your web browser and visit http://localhost:3000 to view the project.
 
