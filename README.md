@@ -1,3 +1,34 @@
+# Project Title
+
+Brief description of the project.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Installation
+
+1. Clone the repository to your local machine using the following command:
+
+   git clone <repository-url>
+
+2. Navigate to the project directory:
+
+   cd <project-directory>
+
+3. Install the project dependencies using npm:
+   npm install
+
+4. Once the installation is complete, start the development server by running:
+
+5. Open your web browser and visit http://localhost:3000 to view the project.
+
+6. You can now make changes to the project code. The development server will automatically reload the page if you make edits.
+   npm start
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
