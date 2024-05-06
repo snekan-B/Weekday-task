@@ -50,3 +50,14 @@
   padding-bottom: 11px;
   height: 80% !important;
 }
+
+@media screen and (max-width: 500px) {
+  .filter-component {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-left: 20px !important;
+  }
+}
