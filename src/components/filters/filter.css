@@ -25,6 +25,8 @@
 }
 .filter-box input {
   font-size: 10px;
+  color: black;
+  font-weight: 500;
 }
 .filter-box span {
   font-size: 10px;

@@ -95,8 +95,9 @@ export default function JobCard() {
                 )}
                 <div className="job-btn-grp">
                   <button className="apply-button">Easy Apply</button>
+                  <br></br>
                   <button className="referal-button">
-                    unlock referal asks
+                    Unlock referal asks
                   </button>
                 </div>
               </div>
