@@ -1,6 +1,5 @@
 # Weekday  task
 
-Brief description of the project.
 
 ## Table of Contents
 
@@ -10,6 +9,11 @@ Brief description of the project.
 - [License](#license)
 
 ## Installation
+
+## Prerequisites
+
+### Install Node JS
+Refer to https://nodejs.org/en/ to install nodejs
 
 1. Clone the repository to your local machine using the following command:
 
