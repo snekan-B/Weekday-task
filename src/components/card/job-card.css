@@ -104,6 +104,7 @@ body {
   color: blue;
   border: 0;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .thunder-img {
