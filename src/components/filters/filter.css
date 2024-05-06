@@ -1,18 +1,50 @@
-.filter-component div{
-    font-size: 1rem;
+.filter-component div {
+  font-size: 1rem;
 }
 
 .filter-component {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-right: 0 !important;
 }
 
-.checkbox-grp{
-    display: flex;
-    width: 80%;
-    justify-content: space-around;
+.checkbox-grp {
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
 }
-.checkbox-grp >div{
-    width: 20%;
+.checkbox-grp > div {
+  width: 20%;
+}
+
+.filter-box {
+  min-width: 20%;
+  width: auto !important;
+}
+.filter-box input {
+  font-size: 10px;
+}
+.filter-box span {
+  font-size: 10px;
+}
+
+.css-1gywuxd-MuiInputBase-root-MuiOutlinedInput-root {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+}
+
+.css-38raov-MuiButtonBase-root-MuiChip-root .MuiChip-deleteIcon {
+  height: 40%;
+  width: 20%;
+}
+
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  font-size: 12px !important;
+}
+
+#outlined-basic {
+  padding-bottom: 11px;
+  height: 80% !important;
 }
