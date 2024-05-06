@@ -21,7 +21,13 @@ export default function JobCard() {
   const toggleCardExpansion = (index) => {
     setExpandedCards((prev) => {
       const newExpandedCards = [...prev];
-      newExpandedCards[index] = !newExpandedCards[index];
+      // If the card is not expanded, expand it
+      if (!newExpandedCards[index]) {
+        newExpandedCards[index] = true;
+      } else {
+        // If the card is expanded, collapse it
+        newExpandedCards[index] = false;
+      }
       return newExpandedCards;
     });
   };
@@ -113,6 +119,14 @@ export default function JobCard() {
                           onClick={() => toggleCardExpansion(index)}
                         >
                           View Job
+                        </button>
+                      )}
+                      {isExpanded && (
+                        <button
+                          className="readmore-button"
+                          onClick={() => toggleCardExpansion(index)}
+                        >
+                          View less
                         </button>
                       )}
                     </p>
