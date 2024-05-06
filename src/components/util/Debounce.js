@@ -5,8 +5,6 @@
 
 export function debounce(func, delay) {
     let timeoutId;
-
-    console.log("func",func)
     
     return function(...args) {
       clearTimeout(timeoutId);
