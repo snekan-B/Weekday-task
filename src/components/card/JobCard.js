@@ -75,21 +75,22 @@ export default function JobCard() {
                 </div>
                 {selector?.minJdSalary != null && selector?.maxJdSalary && (
                   <div className="salary">
-                    Estimated Salary - {selector?.minJdSalary}-{" "}
-                    {selector?.maxJdSalary}
+                    Estimated Salary : $ {selector?.minJdSalary}-{" "}
+                    {selector?.maxJdSalary} LPA
                   </div>
                 )}
 
                 {selector?.jobDetailsFromCompany != null && (
                   <div className="about-company">
                     <h4>About Company:</h4>
+                    <h5>About us</h5>
                     <p>{selector?.jobDetailsFromCompany}</p>
                   </div>
                 )}
                 {selector?.minExp != null && (
                   <div className="experience">
-                    <h5>Minimum Experience</h5>
-                    <div>{selector?.minExp}</div>
+                    <h5 className="min-experience">Minimum Experience</h5>
+                    <div>{selector?.minExp} years</div>
                   </div>
                 )}
                 <div className="job-btn-grp">
