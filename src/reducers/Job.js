@@ -1,5 +1,16 @@
 import { JobActionTypes } from "../constants/action-fields";
 
+/**
+ *  Reducer class for Job actions
+ * @param {*} state - state for job reducers.
+ * state :
+ *      jobs -        jobs going to render (filtered jobs)
+ *      actual jobs - jobs from api
+ *      filter -      contains filter values selected in the checkbox
+ * @param {*} payload - payload from actions.
+ * @returns 
+ */
+
 export const Job = (
   state = {
     jobs: [],
@@ -14,21 +25,24 @@ export const Job = (
   },
   { type, payload }
 ) => {
+  console.log("Action triggered",type)
   switch (type) {
     case JobActionTypes.GET_JOBS: {
-      console.log("pay", payload);
       const actualJobs = [...state.actualJobs, ...payload.actualJobs];
+      // Jobs will be filtered during get job action, if filtered is apply.
       const jobs = getFilteredJob(actualJobs, state.filter);
       return { ...state, jobs: jobs, actualJobs };
     }
     case JobActionTypes.FILTER_JOBS: {
       const filterBy = payload.filterBy;
+      // Format the filter values from constant
       const filterValue = getFormatFilterValues(filterBy, payload.filterValue);
-      console.log("updated filter12", filterBy, filterValue);
+    
+      // set the formated filter values 
       const filter = { ...state.filter, [filterBy]: filterValue };
-      console.log("updated filter", filter);
+      // Get the filtered jobs based on filter
       const filterJobs = getFilteredJob(state?.actualJobs, filter);
-      console.log("filteredJobs", filterJobs);
+  
       return { ...state, jobs: filterJobs, filter: filter };
     }
     default: {
@@ -38,16 +52,24 @@ export const Job = (
 };
 
 const getFilteredJob = (jobs, filter) => {
-  console.log("hhh", filter);
+  
   return jobs.filter((job) => {
+    // role condition- Filters only ,if job role is present in filter value list , 
+    // role value from api is not null and role value is present in selected list
     const roleCondition =
       filter.jobRole.length > 0
         ? job?.jobRole != null && filter.jobRole.includes(job?.jobRole)
         : true;
+
+     // experience condition- Filters only,if minimum exp present in filter value list , 
+    // minimum experience from api is not null and minimum value is present in selected list in checkbox
     const expCondtion =
       filter.minExp.length > 0
         ? job?.minExp != null && filter.minExp.includes(job?.minExp)
         : true;
+
+    // locationCondition - Filters only , if location is present in filter value list , 
+    // for remote and hybrid only hybrid and remote are returned. For in-office , location (delhi-ncr,chennai) is returned
     const locationCondition =
       filter.location.length > 0
         ? job?.location != null &&
@@ -57,12 +79,14 @@ const getFilteredJob = (jobs, filter) => {
               job?.location !== "hybrid"))
         : true;
 
+    // role condition- Filters the exp greater than actual selected value.
     const salaryConditon =
       filter.minJdSalary !== null && filter.minJdSalary.length > 0
         ? job?.minJdSalary != null &&
           parseInt(filter.minJdSalary.replace("L", "")) <= job?.minJdSalary
         : true;
 
+    // filters the name of the company chose in the input.
     const companyNameCondition =
       filter.companyName.length > 0
         ? job?.companyName != null &&
@@ -71,18 +95,6 @@ const getFilteredJob = (jobs, filter) => {
             .includes(filter.companyName.toLowerCase())
         : true;
 
-    console.log(
-      "roleCondition",
-      roleCondition,
-      "expCondtion",
-      expCondtion,
-      "locationCondition",
-      locationCondition,
-      "salaryConditon",
-      salaryConditon,
-      "com",
-      companyNameCondition
-    );
     return (
       roleCondition &&
       expCondtion &&

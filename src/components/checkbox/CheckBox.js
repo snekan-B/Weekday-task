@@ -1,6 +1,10 @@
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
+
+/**
+ * Normal checkBox component.
+ */
 export function CheckBox({placeholder,options,onChange,filterKey,isMultiple}) {
     return(
         <Autocomplete
@@ -19,6 +23,9 @@ export function CheckBox({placeholder,options,onChange,filterKey,isMultiple}) {
     )
 }
 
+/**
+ * CheckBox compoent with group. 
+ */
 
 export function GroupedCheckBox({placeholder,options,onChange,filterKey}) {
     return(

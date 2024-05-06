@@ -3,8 +3,13 @@ import { GroupedCheckBox, CheckBox } from "../checkbox/CheckBox";
 import { filterJobs } from "../../actions/JobActions";
 import { useDispatch } from "react-redux";
 import { TextField } from "@mui/material";
+import { debounce } from "../util/Debounce";
 import "./filter.css";
 
+
+/**
+ * Filter component
+ */
 export default function Filter() {
   const dispatch = useDispatch();
 
@@ -12,10 +17,15 @@ export default function Filter() {
     dispatch(filterJobs(filterKey, value));
   };
 
-  const doCompanySearch = (event) => {
-    console.log("name", event.target.value);
-    dispatch(filterJobs("companyName", event.target.value));
-  };
+  /**
+   * Function for search company name
+   * Used debounce to trigger state update
+   * Avoid state update for each input value change.
+   */
+  const doCompanySearch = debounce((event) => {
+    dispatch(filterJobs("companyName", event.target.value))
+  },1000
+)
 
   return (
     <div className="filter-component">
