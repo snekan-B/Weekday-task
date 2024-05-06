@@ -13,11 +13,11 @@ Brief description of the project.
 
 1. Clone the repository to your local machine using the following command:
 
-   git clone <repository-url>
+   git clone [<repository-url>](https://github.com/snekan-B/weekday-task.git)
 
 2. Navigate to the project directory:
 
-   cd <project-directory>
+   cd project-directory
 
 3. Install the project dependencies using npm:
    npm install
